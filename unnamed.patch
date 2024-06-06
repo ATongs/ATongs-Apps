@@ -1,0 +1,49 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision deeac204f3d8d5a65df1a7bb32b778e9ebc89e59)
++++ b/app/src/main/res/layout/activity_main.xml	(revision e29cef3377a2bc73637f51b0c5e05c1db62f8bfd)
+@@ -8,14 +8,18 @@
+ 
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:id="@+id/nav_view"
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="0dp"
+-        android:layout_marginEnd="0dp"
+-        android:background="?android:attr/windowBackground"
++        android:layout_width="match_parent"
++        android:layout_height="70dp"
++        app:itemIconTint="@color/white"
++        app:backgroundTint="@color/black_green"
++        app:itemTextColor="@color/white"
++        app:itemTextAppearanceActiveBoldEnabled="false"
++        app:itemActiveIndicatorStyle="@color/transparent"
++        app:itemPadding="10dp"
++        app:cornerRadius="8dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintLeft_toLeftOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
+         app:menu="@menu/bottom_nav_menu" />
+ 
+     <fragment
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision deeac204f3d8d5a65df1a7bb32b778e9ebc89e59)
++++ b/app/src/main/res/values/colors.xml	(revision e29cef3377a2bc73637f51b0c5e05c1db62f8bfd)
+@@ -8,4 +8,5 @@
+     <color name="black_green">#004D34</color>
+     <color name="black">#FF000000</color>
+     <color name="white">#FFFFFFFF</color>
++    <color name="transparent">#00000000</color>
+ </resources>
+\ No newline at end of file
