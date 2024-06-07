@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -17,6 +19,28 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+
+        val localPropertiesFile = project.rootProject.file("local.properties")
+
+        properties.load(localPropertiesFile.inputStream())
+        val apiKey: String = properties.getProperty("API_KEY")
+
+        properties.load(localPropertiesFile.inputStream())
+        val baseUrl:String = properties.getProperty("BASE_URL")
+
+
+        buildConfigField(
+            "String",
+            "API_KEY",
+            "\"$apiKey\""
+        )
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"$baseUrl\""
+        )
     }
 
     buildTypes {
@@ -72,6 +96,7 @@ dependencies {
 
     //glide
     implementation(libs.glide)
+    annotationProcessor (libs.compiler)
 
     //lottie
     implementation(libs.lottie)
