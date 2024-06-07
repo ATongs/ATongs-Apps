@@ -1,13 +1,12 @@
 package com.project.capstone.atongs_md.ui.article
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.project.capstone.atongs_md.data.Result
+import com.project.capstone.atongs_md.data.repository.ArticleRepository
+import com.project.capstone.atongs_md.data.response.ArticlesItem
 
-class ArticleViewModel : ViewModel() {
+class ArticleViewModel(articleRepository: ArticleRepository): ViewModel(){
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+    val listUser: LiveData<Result<List<ArticlesItem>>> = articleRepository.getListUser()
 }

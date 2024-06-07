@@ -17,4 +17,8 @@
     <string name="waste">Botol Plastik</string>
     <string name="scan_result">Detail result scan</string>
     <string name="under_construction">Sedang Perbaikan</string>
+    <string name="sample_name">Naufal</string>
+    <string name="source_title">Tittle</string>
+    <string name="sample_source">"Source Link "</string>
+    <string name="upload">Upload</string>
 </resources>
