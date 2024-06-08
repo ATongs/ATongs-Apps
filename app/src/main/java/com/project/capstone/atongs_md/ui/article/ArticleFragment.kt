@@ -35,7 +35,7 @@ class ArticleFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory: ArticleViewModelFactory = ArticleViewModelFactory.getInstance() // Sesuaikan jika perlu argumen
+        val factory: ArticleViewModelFactory = ArticleViewModelFactory.getInstance()
         viewModel = ViewModelProvider(this, factory)[ArticleViewModel::class.java]
     }
 
@@ -46,7 +46,7 @@ class ArticleFragment : Fragment() {
     }
 
     private fun observerListUser() {
-        viewModel.listUser.observe(viewLifecycleOwner) {
+        viewModel.listArticle.observe(viewLifecycleOwner) {
             when (it) {
                 is Result.Loading -> {
                     binding.progressBar.isVisible = true

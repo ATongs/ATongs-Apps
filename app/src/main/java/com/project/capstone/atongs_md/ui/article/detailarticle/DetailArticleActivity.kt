@@ -26,7 +26,6 @@ class DetailArticleActivity : ComponentActivity() {
             .load(imageUrl)
             .into(binding.ivImage)
 
-        // Tambahkan logika lain jika diperlukan
     }
 
     companion object {

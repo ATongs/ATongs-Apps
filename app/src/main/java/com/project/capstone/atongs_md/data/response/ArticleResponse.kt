@@ -15,8 +15,15 @@ data class ArticleResponse(
 )
 
 data class ArticlesItem(
-    val id: String,
-    val title: String?,
-    val description: String?,
-    val urlToImage: String?
+    @field:SerializedName("id")
+    val id: String? = null,
+
+    @field:SerializedName("urlToImage")
+    val urlToImage: String? = null,
+
+    @field:SerializedName("description")
+    val description: String? = null,
+
+    @field:SerializedName("title")
+    val title: String? = null
 )
