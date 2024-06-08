@@ -12,7 +12,7 @@ class ArticleRepository(
     private val apiService: ApiService
 ) {
 
-    fun getListUser(): LiveData<Result<List<ArticlesItem>>> = liveData {
+    fun getListArticle(): LiveData<Result<List<ArticlesItem>>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.getArticle("environment", "relevancy", "en", BuildConfig.API_KEY)

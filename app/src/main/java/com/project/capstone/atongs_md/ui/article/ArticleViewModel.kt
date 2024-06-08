@@ -8,5 +8,5 @@ import com.project.capstone.atongs_md.data.response.ArticlesItem
 
 class ArticleViewModel(articleRepository: ArticleRepository): ViewModel(){
 
-    val listUser: LiveData<Result<List<ArticlesItem>>> = articleRepository.getListUser()
+    val listArticle: LiveData<Result<List<ArticlesItem>>> = articleRepository.getListArticle()
 }
