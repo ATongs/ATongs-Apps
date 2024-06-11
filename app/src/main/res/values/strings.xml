@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ATongs-MD</string>
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_article">Article</string>
+    <string name="your_web_client_id">1089859227835-g8dgopkckqbb7oapdkhn0sv3ukucg5a6.apps.googleusercontent.com</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="greet">Hallo apa kabar!</string>
+    <string name="greet_name">ATongs!</string>
+    <string name="try_now">Scan Waste</string>
+    <string name="home_desc">Scan untuk mendapatkan hasil klasifikasi sampah. Ayo recycle sampah menjadi produk kreatif</string>
+    <string name="home_msg">Pastikan untuk mengambil gambar di bawah sinar matahari atau memindai di latar belakang polos,sehingga gambar yang dihasilkan terlihat lebih baik dan benar</string>
+    <string name="login_with">Login with :</string>
+    <string name="article_title">Jaga Kebersihan</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh mauris cursus mattis molestie. Pulvinar pellentesque habitant morbi tristique senectus et netus et. Justo nec ultrices dui sapien eget mi proin sed. Ac tincidunt vitae semper quis lectus nulla at. Lacus laoreet non curabitur gravida arcu ac tortor. Amet aliquam id diam maecenas ultricies mi eget. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. At urna condimentum mattis pellentesque id. Donec ultrices tincidunt arcu non sodales neque sodales ut etiam. Dui sapien eget mi proin sed libero enim sed faucibus. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Cum sociis natoque penatibus et magnis dis parturient montes. Neque aliquam vestibulum morbi blandit cursus.</string>
+    <string name="date_dummy">06/06/2024</string>
+    <string name="waste">Botol Plastik</string>
+    <string name="scan_result">Detail result scan</string>
+    <string name="under_construction">Sedang Perbaikan</string>
+    <string name="sample_name">Naufal</string>
+    <string name="source_title">Tittle</string>
+    <string name="sample_source">"Source Link "</string>
+    <string name="upload">Upload</string>
+</resources>
