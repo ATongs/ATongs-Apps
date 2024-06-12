@@ -24,4 +24,21 @@ object ApiConfig {
 
         return retrofit.create(ApiService::class.java)
     }
+
+    fun getDetectionApiService(): DetectionApiService{
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://atongs-backend-6a2cdn4ska-et.a.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(DetectionApiService::class.java)
+    }
 }

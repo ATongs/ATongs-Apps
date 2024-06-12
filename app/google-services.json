@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1089859227835-n2fv9nba0aae4l8q9g7261pt1fr7tcg5.apps.googleusercontent.com",
+          "client_id": "1089859227835-k7e35rpdl3e5lrjua72qd327ut5k9fpm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.project.capstone.atongs_md",
-            "certificate_hash": "ae9132fe6c59bace1c4afe4f916cfe15a74fc555"
+            "certificate_hash": "df07941749741cf6f5961257e1cc4b234e121160"
           }
         },
         {

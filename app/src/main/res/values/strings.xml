@@ -21,4 +21,9 @@
     <string name="source_title">Tittle</string>
     <string name="sample_source">"Source Link "</string>
     <string name="upload">Upload</string>
+    <string name="label">Botol Plastik</string>
+    <string name="accuracy">Akurasi</string>
+    <string name="acc_percent">80%</string>
+    <string name="description">Massage</string>
+    <string name="desc_massage">Classified as: trash</string>
 </resources>

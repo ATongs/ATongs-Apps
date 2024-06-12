@@ -1,57 +1,36 @@
 package com.project.capstone.atongs_md.ui.camera
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import com.project.capstone.atongs_md.R
 import com.project.capstone.atongs_md.databinding.ActivityPreviewBinding
+import com.project.capstone.atongs_md.ui.detection.DetectionResultActivity
+import com.project.capstone.atongs_md.data.Result
+import com.project.capstone.atongs_md.ui.detection.DetectionViewModel
+import com.project.capstone.atongs_md.ui.detection.DetectionViewModelFactory
 import java.io.File
 
 class PreviewActivity : AppCompatActivity() {
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
-
-    private var uid: String? = null
 
     private var isDetection = true
     private var imageFile: File? = null
 
     private lateinit var binding: ActivityPreviewBinding
 
-//    private val authViewModel: AuthViewModel by viewModels {
-//        AuthViewModelFactory.getInstance(dataStore)
-//    }
-//
-//    private val detectionViewModel: DetectionViewModel by viewModels {
-//        DetectionViewModelFactory.getInstance()
-//    }
+    private val detectionViewModel: DetectionViewModel by viewModels {
+        DetectionViewModelFactory.getInstance()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        authViewModel.isLogin().observe(this) { uid ->
-//            if (!uid.isNullOrEmpty()) {
-//                this.uid = uid
-//            }
-//        }
-
         getCondition()
-
-        //setToolBar()
         setPreviewImage()
         setAction()
     }
@@ -63,112 +42,62 @@ class PreviewActivity : AppCompatActivity() {
     private fun setAction() {
         binding.btnUpload.setOnClickListener {
             if (isDetection) {
-                //postDetection()
+                postDetection()
             } else {
                 uploadProfilePicture()
             }
         }
     }
 
-//    private fun postDetection() {
-//        if (!uid.isNullOrEmpty())
-//            detectionViewModel.postDetectionDisease(uid!!, imageFile!!)
-//                .observe(this) { result ->
-//                    when (result) {
-//                        is Result.Loading -> {
-//                            binding.progressBar.visibility = View.VISIBLE
-//                        }
-//                        is Result.Success -> {
-//                            binding.progressBar.visibility = View.GONE
-//                            val dataResult = result.data
-//                            val intent = Intent(
-//                                this@ImagePreviewActivity,
-//                                DetectionResultActivity::class.java
-//                            )
-//                            intent.putExtra(
-//                                DetectionResultActivity.DETECTION_RESULT,
-//                                dataResult
-//                            )
-//                            startActivity(intent)
-//                            finish()
-//                        }
-//                        is Result.Error -> {
-//                            binding.progressBar.visibility = View.GONE
-//                            Toast.makeText(
-//                                this,
-//                                "Failed to detect disease",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//
-//                        }
-//                    }
-//                } else
-//            Toast.makeText(
-//                this,
-//                "Failed to obtain user authentication",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//    }
-
-    private fun uploadProfilePicture() {
-        if (!uid.isNullOrEmpty())
-            //editProfilePicture(uid!!, imageFile!!)
-        else
-            Toast.makeText(
-                this,
-                "Failed to obtain user authentication",
-                Toast.LENGTH_SHORT
-            ).show()
+    private fun postDetection() {
+        if (imageFile != null) {
+            detectionViewModel.postDetectionDisease(imageFile!!)
+                .observe(this) { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            val dataResult = result.data
+                            val intent = Intent(this@PreviewActivity, DetectionResultActivity::class.java).apply {
+                                putExtra(DetectionResultActivity.DETECTION_RESULT, dataResult)
+                                putExtra(DetectionResultActivity.IMAGE_PATH, imageFile!!.absolutePath) // Pass image path
+                            }
+                            startActivity(intent)
+                            finish()
+                        }
+                        is Result.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(this, "Gagal mendeteksi sampah", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+        } else {
+            Toast.makeText(this, "File gambar tidak ada", Toast.LENGTH_SHORT).show()
+        }
     }
 
-//    private fun editProfilePicture(uid: String, imageFile: File) {
-//        authViewModel.editProfilePicture(uid, imageFile).observe(this) { result ->
-//            when (result) {
-//                is Result.Loading -> {
-//                    binding.progressBar.visibility = View.VISIBLE
-//                }
-//                is Result.Success -> {
-//                    Log.i("IMAGEPREVIEW", "OKAYYU BERHASIL ${result.data}")
-//                    binding.progressBar.visibility = View.GONE
-//                    AlertDialog.Builder(this).apply {
-//                        setTitle("Success!")
-//                        setMessage(result.data)
-//                        setPositiveButton("Lanjut") { _, _ ->
-//                            finish()
-//                        }
-//                        create()
-//                        show()
-//                    }
-//                }
-//                is Result.Error -> {
-//                    binding.progressBar.visibility = View.GONE
-//                    Toast.makeText(
-//                        this,
-//                        "Failed to update profile picture",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//        }
-//    }
+
+    private fun uploadProfilePicture() {
+        // Implementasikan fungsionalitas upload foto profil di sini
+        Toast.makeText(this, "Fungsionalitas upload foto profil belum diimplementasikan", Toast.LENGTH_SHORT).show()
+    }
 
     private fun setPreviewImage() {
         val imagePath = intent.getStringExtra(IMAGE_PATH)
-        val imageUri = Uri.parse(imagePath)
-        imageFile = imageUri.path?.let { File(it) }
-        binding.ivPreviewImage.setImageURI(imageUri)
-
+        if (!imagePath.isNullOrEmpty()) {
+            val imageUri = Uri.parse(imagePath)
+            imageFile = imageUri.path?.let { File(it) }
+            if (imageFile?.exists() == true) {
+                binding.ivPreviewImage.setImageURI(imageUri)
+            } else {
+                Toast.makeText(this, "File gambar tidak ada", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "Jalur gambar tidak valid", Toast.LENGTH_SHORT).show()
+        }
     }
-
-//    private fun setToolBar() {
-//        binding.apply {
-//            setSupportActionBar(toolbar.toolbar)
-//            toolbar.tvToolbarTitle.text = getString(R.string.preview)
-//            toolbar.btnBackToolbar.setOnClickListener {
-//                finish()
-//            }
-//        }
-//    }
 
     companion object {
         const val IS_DETECTION = "is_detection"

@@ -27,4 +27,13 @@ class ArticleRepository(
             emit(Result.Error(e.message.toString()))
         }
     }
+    companion object {
+        @Volatile
+        private var instance: ArticleRepository? = null
+        fun getInstance(
+            apiService: ApiService
+        ): ArticleRepository = instance ?: synchronized(this) {
+            instance ?: ArticleRepository(apiService)
+        }.also { instance = it }
+    }
 }
