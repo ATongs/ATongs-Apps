@@ -22,8 +22,12 @@
     <string name="sample_source">"Source Link "</string>
     <string name="upload">Upload</string>
     <string name="label">Botol Plastik</string>
-    <string name="accuracy">Akurasi</string>
+    <string name="accuracy">Akurasi : </string>
     <string name="acc_percent">80%</string>
     <string name="description">Massage</string>
     <string name="desc_massage">Classified as: trash</string>
+    <string name="explanation">Explanation</string>
+    <string name="message_explanation">Limbah logam merupakan salah satu jenis limbah yang terbuat dari bahan logam. Hal ini dapat berasal dari berbagai sumber, seperti produksi industri, manufaktur, dan penggunaan konsumen. Limbah logam dapat menjadi masalah karena sulit didaur ulang, dan juga dapat mencemari lingkungan jika tidak dibuang dengan benar. Ada beberapa cara untuk mengurangi limbah logam, seperti menggunakan kembali produk logam, mendaur ulang bahan logam, dan memilih produk yang berbahan logam daur ulang.</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="message_suggestion">* Pisahkan sampah logam dari sampah jenis lainnya. Hal ini dapat dilakukan dengan menempatkan benda-benda logam di tempat sampah atau wadah daur ulang yang telah ditentukan.\\n* Bersihkan benda logam sebelum mendaur ulangnya. Ini akan membantu mencegah kontaminasi bahan daur ulang lainnya.\\n* Ratakan benda logam untuk mengurangi volumenya. Ini akan membuatnya lebih mudah untuk diangkut dan diproses.\\n* Tempatkan benda logam di tempat sampah atau wadah daur ulang. Sebagian besar masyarakat telah menyediakan tempat sampah atau wadah daur ulang untuk limbah logam.</string>
 </resources>

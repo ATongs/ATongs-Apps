@@ -5,10 +5,10 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class DetectionResponse(
+data class HistoryResponse(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: List<DataItem> = emptyList(),
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -18,7 +18,23 @@ data class DetectionResponse(
 ) : Parcelable
 
 @Parcelize
-data class Result(
+data class DataItem(
+
+	@field:SerializedName("result")
+	val result: ResultHistory? = null,
+
+	@field:SerializedName("createdAt")
+	val createdAt: String? = null,
+
+	@field:SerializedName("imageUrl")
+	val imageUrl: String? = null,
+
+	@field:SerializedName("id")
+	val id: String? = null
+) : Parcelable
+
+@Parcelize
+data class ResultHistory(
 
 	@field:SerializedName("probability")
 	val probability: Double? = null,
@@ -34,17 +50,4 @@ data class Result(
 
 	@field:SerializedName("explanation")
 	val explanation: String? = null
-) : Parcelable
-
-@Parcelize
-data class Data(
-
-	@field:SerializedName("result")
-	val result: Result? = null,
-
-	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
-
-	@field:SerializedName("id")
-	val id: String? = null
 ) : Parcelable

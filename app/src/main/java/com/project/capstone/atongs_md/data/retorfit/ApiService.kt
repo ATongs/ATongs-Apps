@@ -13,4 +13,5 @@ interface ApiService {
         @Query("language") language: String,
         @Query("apiKey") apiKey: String
     ): ArticleResponse
+
 }

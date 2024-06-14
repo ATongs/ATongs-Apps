@@ -6,7 +6,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 
-interface DetectionApiService {
+interface DetectionApiService : ApiService {
     @Multipart
     @POST("classify")
     suspend fun postDetectionDisease(

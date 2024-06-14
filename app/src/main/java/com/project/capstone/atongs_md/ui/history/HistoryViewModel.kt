@@ -1,13 +1,12 @@
 package com.project.capstone.atongs_md.ui.history
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.project.capstone.atongs_md.data.Result
+import com.project.capstone.atongs_md.data.repository.HistoryRepository
+import com.project.capstone.atongs_md.data.response.DataItem
 
-class HistoryViewModel : ViewModel() {
+class HistoryViewModel(historyRepository: HistoryRepository): ViewModel(){
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+    val listHistory: LiveData<Result<List<DataItem>>> = historyRepository.getListHistory()
 }

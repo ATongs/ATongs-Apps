@@ -19,14 +19,15 @@ class ArticleRepository(
             if (response.status == "ok") {
                 emit(Result.Success(response.articles?.filterNotNull() ?: emptyList()))
             } else {
-                emit(Result.Error("Error fetching articles"))
+                emit(Result.Error(Exception("Error fetching articles: ${response.status}")))
             }
 
         } catch (e: Exception) {
-            Log.d("UserRepository", "getListUser: ${e.message.toString()} ")
-            emit(Result.Error(e.message.toString()))
+            Log.d("ArticleRepository", "getListArticle: ${e.message.toString()}")
+            emit(Result.Error(e))
         }
     }
+
     companion object {
         @Volatile
         private var instance: ArticleRepository? = null

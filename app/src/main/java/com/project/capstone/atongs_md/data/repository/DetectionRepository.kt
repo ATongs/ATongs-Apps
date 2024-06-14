@@ -30,7 +30,7 @@ class DetectionRepository private constructor(
             emit(Result.Success(response))
         } catch (e: Exception) {
             Log.d("DetectionRepository", "postDetectionDisease: ${e.message}")
-            emit(Result.Error(e.message.toString()))
+            emit(Result.Error(e))
         }
     }
 

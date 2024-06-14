@@ -2,6 +2,7 @@ package com.project.capstone.atongs_md.ui.detection
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.project.capstone.atongs_md.data.response.DetectionResponse
@@ -18,29 +19,37 @@ class DetectionResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getDataResult()
-        setPreviewImage() // Call method to set image
+        setPreviewImage()
     }
 
     private fun getDataResult() {
-        val dataResultDetection = intent.getParcelableExtra<DetectionResponse>(DETECTION_RESULT) as DetectionResponse
-        setDataResultView(dataResultDetection)
+        val dataResultDetection = intent.getParcelableExtra<DetectionResponse>(DETECTION_RESULT)
+        if (dataResultDetection != null) {
+            Log.d("DetectionResultActivity", "Data Result: $dataResultDetection")
+            setDataResultView(dataResultDetection)
+        } else {
+            Toast.makeText(this, "Data hasil deteksi tidak ditemukan", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setDataResultView(dataResult: DetectionResponse) {
         binding.apply {
-            tvDetection.text = dataResult.data?.result?.label
-            tvDescAccuracy.text = dataResult.data?.result?.probability.toString()
-            tvDate.text = dataResult.data?.createdAt
-            tvDescResult.text = dataResult.data?.result?.message
+            tvDetection.text = dataResult.data?.result?.label ?: "N/A"
+            tvDescAccuracy.text = dataResult.data?.result?.probability?.toString() ?: "N/A"
+            tvDescExplanation.text = dataResult.data?.result?.explanation ?: "Tidak ada penjelasan"
+            tvDescSuggestion.text = dataResult.data?.result?.suggestion ?: "Tidak ada saran"
+            tvMessageResult.text = dataResult.message ?: "Tidak ada pesan"
         }
     }
 
     private fun setPreviewImage() {
         val imagePath = intent.getStringExtra(IMAGE_PATH)
+        Log.d("DetectionResultActivity", "Image Path: $imagePath")
         if (!imagePath.isNullOrEmpty()) {
-            val imageUri = Uri.fromFile(File(imagePath))
-            if (File(imagePath).exists()) {
-                binding.imgResult.setImageURI(imageUri) // Assuming ivPreviewImage is the ImageView in DetectionResultActivity
+            val imageFile = File(imagePath)
+            if (imageFile.exists()) {
+                val imageUri = Uri.fromFile(imageFile)
+                binding.imgResult.setImageURI(imageUri)
             } else {
                 Toast.makeText(this, "File gambar tidak ada", Toast.LENGTH_SHORT).show()
             }
